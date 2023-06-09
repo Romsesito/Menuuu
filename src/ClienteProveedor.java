@@ -51,11 +51,11 @@ public class ClienteProveedor {
         System.out.print("Ingrese el nombre del producto o servicio: ");
         String nombreProductoServicio = scanner.nextLine();
 
-        System.out.print("Ingrese el precio del producto o servicio: ");
+        System.out.print("Ingrese el precio: ");
         double precio = scanner.nextDouble();
         scanner.nextLine();
 
-        String cliente = nombreCliente + " - " + nombreProductoServicio + " - Precio: " + precio;
+        String cliente = nombreCliente + " - " + nombreProductoServicio + " - " + precio;
         clientesProveedores.add(cliente);
         System.out.println("Cliente agregado correctamente.");
     }
@@ -69,11 +69,11 @@ public class ClienteProveedor {
         System.out.print("Ingrese el nombre del producto o servicio: ");
         String nombreProductoServicio = scanner.nextLine();
 
-        System.out.print("Ingrese el precio del producto o servicio: ");
+        System.out.print("Ingrese el precio: ");
         double precio = scanner.nextDouble();
         scanner.nextLine();
 
-        String proveedor = nombreProveedor + " - " + nombreProductoServicio + " - Precio: " + precio;
+        String proveedor = nombreProveedor + " - " + nombreProductoServicio + " - " + precio;
         clientesProveedores.add(proveedor);
         System.out.println("Proveedor agregado correctamente.");
     }

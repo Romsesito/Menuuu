@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class Dashboard {
@@ -9,8 +10,8 @@ public class Dashboard {
     public Dashboard() {
         scanner = new Scanner(System.in);
         transaccion = new Transaccion();
-        reporteFinanciero = new ReporteFinanciero(transaccion.getIngresos(), transaccion.getEgresos());
         clienteProveedor = new ClienteProveedor(transaccion);
+        reporteFinanciero = new ReporteFinanciero(transaccion.getIngresos(), transaccion.getEgresos(), clienteProveedor.getClientesProveedores());
     }
 
     public void mostrarMenu() {
