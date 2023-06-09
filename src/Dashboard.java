@@ -4,11 +4,13 @@ public class Dashboard {
     private Scanner scanner;
     private Transaccion transaccion;
     private ReporteFinanciero reporteFinanciero;
+    private ClienteProveedor clienteProveedor;
 
     public Dashboard() {
         scanner = new Scanner(System.in);
         transaccion = new Transaccion();
         reporteFinanciero = new ReporteFinanciero(transaccion.getIngresos(), transaccion.getEgresos());
+        clienteProveedor = new ClienteProveedor(transaccion);
     }
 
     public void mostrarMenu() {
@@ -36,6 +38,7 @@ public class Dashboard {
                     break;
                 case 3:
                     System.out.println("Opción: Customer");
+                    clienteProveedor.mostrarMenu(); // Llamar al método mostrarMenu() de ClienteProveedor
                     break;
                 case 4:
                     System.out.println("Opción: Supplier");
