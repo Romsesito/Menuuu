@@ -86,4 +86,12 @@ public class Transaccion {
             agregarOtro = respuesta.equalsIgnoreCase("S");
         } while (agregarOtro);
     }
+
+    public List<String> getIngresos() {
+        return ingresos;
+    }
+
+    public List<String> getEgresos() {
+        return egresos;
+    }
 }

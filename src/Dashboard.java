@@ -3,14 +3,17 @@ import java.util.Scanner;
 public class Dashboard {
     private Scanner scanner;
     private Transaccion transaccion;
+    private ReporteFinanciero reporteFinanciero;
 
     public Dashboard() {
         scanner = new Scanner(System.in);
         transaccion = new Transaccion();
+        reporteFinanciero = new ReporteFinanciero(transaccion.getIngresos(), transaccion.getEgresos());
     }
 
     public void mostrarMenu() {
         int opcion;
+
         do {
             System.out.println("========== DASHBOARD ==========");
             System.out.println("1. Transaccion");
@@ -29,6 +32,7 @@ public class Dashboard {
                     break;
                 case 2:
                     System.out.println("Opción: Financial Report");
+                    reporteFinanciero.mostrarMenu(); // Llamar al método mostrarMenu() de ReporteFinanciero
                     break;
                 case 3:
                     System.out.println("Opción: Customer");
