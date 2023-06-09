@@ -1,12 +1,8 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
-public class CuentaUsuario {
+public class Datos {
     private String nombre;
     private String contraseña;
 
-    public CuentaUsuario(String nombre, String contraseña) {
+    public Datos(String nombre, String contraseña) {
         this.nombre = nombre;
         this.contraseña = contraseña;
     }

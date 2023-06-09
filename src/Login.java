@@ -2,11 +2,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Usuario extends CuentaUsuario {
-    private List<Usuario> usuariosRegistrados;
+public class Login extends Datos {
+    private List<Login> usuariosRegistrados;
     private Scanner scanner;
 
-    public Usuario(String nombre, String contraseña) {
+    public Login(String nombre, String contraseña) {
         super(nombre, contraseña);
         usuariosRegistrados = new ArrayList<>();
         scanner = new Scanner(System.in);
@@ -32,7 +32,11 @@ public class Usuario extends CuentaUsuario {
                     registrar();
                     break;
                 case 2:
-                    iniciarSesion();
+                    if (iniciarSesion()) {
+                        // Inicio de sesión exitoso, ejecutar el Dashboard
+                        Dashboard dashboard = new Dashboard();
+                        dashboard.mostrarMenu();
+                    }
                     break;
                 case 3:
                     borrarCuentas();
@@ -55,13 +59,13 @@ public class Usuario extends CuentaUsuario {
         System.out.print("Ingrese su contraseña: ");
         String contraseña = scanner.nextLine();
 
-        Usuario nuevoUsuario = new Usuario(nombreUsuario, contraseña);
-        usuariosRegistrados.add(nuevoUsuario);
+        Login nuevoLogin = new Login(nombreUsuario, contraseña);
+        usuariosRegistrados.add(nuevoLogin);
 
         System.out.println("¡Registro exitoso!");
     }
 
-    private void iniciarSesion() {
+    private boolean iniciarSesion() {
         System.out.println("Cargando...");
 
         System.out.print("Ingrese su nombre de usuario: ");
@@ -70,11 +74,12 @@ public class Usuario extends CuentaUsuario {
         String contraseña = scanner.nextLine();
 
         boolean usuarioEncontrado = false;
-        for (Usuario usuario : usuariosRegistrados) {
-            if (usuario.getNombre().equals(nombreUsuario)) {
+        for (Login login : usuariosRegistrados) {
+            if (login.getNombre().equals(nombreUsuario)) {
                 usuarioEncontrado = true;
-                if (usuario.getContraseña().equals(contraseña)) {
+                if (login.getContraseña().equals(contraseña)) {
                     System.out.println("Inicio de sesión exitoso");
+                    return true; // Retorna true si el inicio de sesión es exitoso
                 } else {
                     System.out.println("Error al escribir usuario/contraseña");
                 }
@@ -85,6 +90,8 @@ public class Usuario extends CuentaUsuario {
         if (!usuarioEncontrado) {
             System.out.println("Usuario no registrado");
         }
+
+        return false; // Retorna false si el inicio de sesión no es exitoso
     }
 
     private void borrarCuentas() {
@@ -97,8 +104,8 @@ public class Usuario extends CuentaUsuario {
 
         System.out.println("Cuentas registradas:");
         for (int i = 0; i < usuariosRegistrados.size(); i++) {
-            Usuario usuario = usuariosRegistrados.get(i);
-            System.out.println((i + 1) + ". " + usuario.getNombre());
+            Login login = usuariosRegistrados.get(i);
+            System.out.println((i + 1) + ". " + login.getNombre());
         }
 
         System.out.print("Seleccione el número de cuenta que desea borrar: ");
@@ -110,8 +117,7 @@ public class Usuario extends CuentaUsuario {
             return;
         }
 
-        Usuario usuarioBorrado = usuariosRegistrados.remove(seleccion - 1);
-        System.out.println("Se ha borrado la cuenta de usuario: " + usuarioBorrado.getNombre());
+        Login loginBorrado = usuariosRegistrados.remove(seleccion - 1);
+        System.out.println("Se ha borrado la cuenta de usuario: " + loginBorrado.getNombre());
     }
 }
-
